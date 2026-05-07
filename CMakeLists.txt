@@ -45,7 +45,7 @@ add_subdirectory(base)
 # add_subdirectory(net)       # 后面再开
 # add_subdirectory(http)      # 后面再开
 # add_subdirectory(examples)  # 后面再开
-# add_subdirectory(tests)     # 后面再开
+add_subdirectory(tests)     # 后面再开
 
 # ----------- 打印一下信息 -----------
 message(STATUS "==========================================")
