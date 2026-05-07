@@ -3,3 +3,6 @@ target_link_libraries(test_timestamp lim_base)
 
 add_executable(test_thread test_thread.cc)
 target_link_libraries(test_thread lim_base)
+
+add_executable(test_sync test_sync.cc)
+target_link_libraries(test_sync lim_base)
