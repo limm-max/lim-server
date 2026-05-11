@@ -8,6 +8,11 @@ set(BASE_SOURCES
     src/CurrentThread.cc
     src/Condition.cc            # ← 新增
     src/CountDownLatch.cc       # ← 新增
+    src/LogStream.cc
+    src/FileUtil.cc
+    src/LogFile.cc
+    src/Logger.cc
+    src/AsyncLogging.cc
     )
 
 add_library(lim_base STATIC ${BASE_SOURCES})

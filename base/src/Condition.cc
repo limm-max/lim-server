@@ -13,7 +13,7 @@ void Condition::wait(){
     mutex_.holder_=preHolder;   //排到队了，并拿到锁了
 }
 
-bool Condition::waitForSecond(double seconds){
+bool Condition::waitForSeconds(double seconds){
     struct timespec abstime;
     clock_gettime(CLOCK_REALTIME,&abstime);
 

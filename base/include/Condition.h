@@ -22,7 +22,7 @@ public:
     // wait 内部:1.释放锁 2.阻塞 3.被唤醒后重新加锁
     void wait();
 
-    bool waitForSecond(double seconds);
+    bool waitForSeconds(double seconds);
 
     //唤醒等待队列的线程
     void notify(){
