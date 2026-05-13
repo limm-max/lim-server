@@ -12,3 +12,9 @@ target_link_libraries(test_logstream lim_base)
 
 add_executable(test_asynclogging test_asynclogging.cc)
 target_link_libraries(test_asynclogging lim_base)
+
+add_executable(test_eventloop test_eventloop.cc)
+target_link_libraries(test_eventloop PRIVATE lim_net pthread)
+
+add_executable(test_eventloopthread test_eventloopthread.cc)
+target_link_libraries(test_eventloopthread PRIVATE lim_net pthread)
