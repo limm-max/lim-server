@@ -24,6 +24,7 @@ namespace lim{
 class EventLoop;
 class EventLoopThread:public Noncopyable{
 public:
+    //因为callback函数要传入loop指针参数进行设置
     using ThreadInitCallback=std::function<void(EventLoop*)>;
 
     EventLoopThread(const ThreadInitCallback& cb = ThreadInitCallback(),

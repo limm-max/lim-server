@@ -7,6 +7,10 @@ set(NET_SOURCES
     src/EventLoop.cc
     src/EventLoopThread.cc  
     src/EventLoopThreadPool.cc
+    src/InetAddress.cc
+    src/Socket.cc
+    src/SocketsOps.cc       
+    src/Acceptor.cc         
     poller/src/Poller.cc
     poller/src/DefaultPoller.cc
     poller/src/EPollPoller.cc
