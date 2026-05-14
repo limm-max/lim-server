@@ -10,6 +10,7 @@ namespace lim {
 class Logger {
 public:
     // 日志级别(从低到高)
+    //枚举类型在类中，称为类的静态成员
     enum LogLevel {
         TRACE,   // 最详细,通常关闭
         DEBUG,   // 调试用

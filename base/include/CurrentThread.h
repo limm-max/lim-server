@@ -1,6 +1,6 @@
 /*
 获取当前线程内核id，由于gettid系统调用切换内核态麻烦，使用这个来进行线程局部缓存
-
+//一组用 __thread（TLS）缓存当前线程 tid 的函数：tid()、tidString()、isMainThread()
 */
 
 #pragma once

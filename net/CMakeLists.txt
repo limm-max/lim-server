@@ -6,6 +6,7 @@ set(NET_SOURCES
     src/Channel.cc
     src/EventLoop.cc
     src/EventLoopThread.cc  
+    src/EventLoopThreadPool.cc
     poller/src/Poller.cc
     poller/src/DefaultPoller.cc
     poller/src/EPollPoller.cc

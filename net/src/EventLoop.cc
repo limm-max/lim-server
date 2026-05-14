@@ -146,7 +146,7 @@ void EventLoop::doPendingFunctors(){
     std::vector<Functor> functors;
     callingPendingFunctors_=true;   //记录标志，正在执行跨线程任务列表
 
-    //这里要拿锁对列表进行处理
+    //这里要拿锁对列表进行处理.这里加作用域，为了减少锁持有时间，只锁真正操作的代码
     {
         MutexLockGuard lock(mutex_);
         functors.swap(pendingFunctors_);

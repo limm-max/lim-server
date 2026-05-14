@@ -18,3 +18,6 @@ target_link_libraries(test_eventloop PRIVATE lim_net pthread)
 
 add_executable(test_eventloopthread test_eventloopthread.cc)
 target_link_libraries(test_eventloopthread PRIVATE lim_net pthread)
+
+add_executable(test_eventloopthreadpool test_eventloopthreadpool.cc)
+target_link_libraries(test_eventloopthreadpool PRIVATE lim_net pthread)

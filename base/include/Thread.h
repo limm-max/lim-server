@@ -1,3 +1,15 @@
+//-----------------------------------
+//封装 pthread_create，构造和启动分离，可以传 std::function<void()> 当任务。
+//----------------------------------
+
+
+
+
+
+
+
+
+
 #pragma once
 
 #include "Noncopyable.h"

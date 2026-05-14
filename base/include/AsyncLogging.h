@@ -32,14 +32,14 @@ public:
     // 前端线程调用:把一条日志塞进 currentBuffer_
     void append(const char* logline, int len);
 
-    // 启动后端线程
+    // 启动后端线程,主线程调用
     void start() {
         running_ = true;
         thread_.start();
         latch_.wait();   // 等后端线程初始化完成
     }
 
-    // 停止后端线程(优雅退出)
+    // 停止后端线程(优雅退出)，主线程
     void stop() {
         running_ = false;
         cond_.notify();
