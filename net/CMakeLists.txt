@@ -10,7 +10,8 @@ set(NET_SOURCES
     src/InetAddress.cc
     src/Socket.cc
     src/SocketsOps.cc       
-    src/Acceptor.cc         
+    src/Acceptor.cc  
+    src/Buffer.cc       
     poller/src/Poller.cc
     poller/src/DefaultPoller.cc
     poller/src/EPollPoller.cc

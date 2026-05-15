@@ -28,3 +28,5 @@ target_link_libraries(test_socket PRIVATE lim_net pthread)
 add_executable(test_acceptor test_acceptor.cc)
 target_link_libraries(test_acceptor PRIVATE lim_net pthread)
  
+add_executable(test_buffer test_buffer.cc)
+target_link_libraries(test_buffer PRIVATE lim_net pthread)
