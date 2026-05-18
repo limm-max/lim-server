@@ -30,3 +30,12 @@ target_link_libraries(test_acceptor PRIVATE lim_net pthread)
  
 add_executable(test_buffer test_buffer.cc)
 target_link_libraries(test_buffer PRIVATE lim_net pthread)
+
+add_executable(test_tcpconnection test_tcpconnection.cc)
+target_link_libraries(test_tcpconnection PRIVATE lim_net pthread)
+
+add_executable(test_tcpserver test_tcpserver.cc)
+target_link_libraries(test_tcpserver PRIVATE lim_net pthread)
+
+add_executable(pingpong_client Pingpong_client.cc)
+target_link_libraries(pingpong_client PRIVATE pthread)

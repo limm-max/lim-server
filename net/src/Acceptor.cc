@@ -80,8 +80,10 @@ namespace lim
         }
         else
         {
-            LOG_ERROR << "Acceptor::handleRead accept failed, errno=" << errno;
-
+            if (errno != EAGAIN && errno != EWOULDBLOCK && errno != EINTR)
+            {
+                LOG_ERROR << "Acceptor::handleRead accept failed, errno=" << errno;
+            }
             //如果是因为fd配额满了,accept 持续失败,但 listenfd 仍可读
             //使用一个"/dev/null"中间fd作缓冲，持续关闭并打开再关闭
             //即优雅关闭该客户连接，直到有新配额。这样服务器不会 busy loop

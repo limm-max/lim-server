@@ -129,6 +129,7 @@ public:
         append(str.data(),str.size());
     }
 
+    //append协议头的时候用到
     void append(const void* data,size_t len)
     {
         append(static_cast<const char*>(data), len);

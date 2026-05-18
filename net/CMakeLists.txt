@@ -11,7 +11,9 @@ set(NET_SOURCES
     src/Socket.cc
     src/SocketsOps.cc       
     src/Acceptor.cc  
-    src/Buffer.cc       
+    src/Buffer.cc 
+    src/TcpConnection.cc    
+    src/TcpServer.cc  
     poller/src/Poller.cc
     poller/src/DefaultPoller.cc
     poller/src/EPollPoller.cc
