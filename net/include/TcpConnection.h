@@ -16,7 +16,7 @@
 #include <memory>
 #include <atomic>
 #include <string>
-
+#include<any>
 namespace lim
 {
 class EventLoop;
@@ -80,6 +80,12 @@ public:
     //closecallback调回主线程，主线程处理完之后又调回子线程进行connectdestroy
     void connectDestroyed();
 
+
+    //————————————上下文，协议层挂数据使用————————————————————————————
+    void setContext(const std::any& context) {context_=context;}
+    const std::any& getContext() const {return context_;}
+    std::any* getMutableContext() {return &context_;}
+
 private:
         // ————— 状态机 ──────
         enum StateE
@@ -126,6 +132,8 @@ private:
 
         Buffer inputBuffer_;       // 收: ::read 后数据进这里
         Buffer outputBuffer_;      // 发: 没发完的数据暂存这里
+
+        std::any context_;
 
 };
 }//namespace lim

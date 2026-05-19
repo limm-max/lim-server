@@ -64,7 +64,7 @@ public:
     const char* findCRLF() const
     {
         const char* crlf=std::search(peek(),beginWrite(),kCRLF,kCRLF+2); //查找刻度区域的kCRLF子串
-        return crlf=beginWrite()? nullptr:crlf; //指针指向beginWrite()说明没找到
+        return crlf==beginWrite()? nullptr:crlf; //指针指向beginWrite()说明没找到
     }
 
     // 找单个字符 (如 '\n')

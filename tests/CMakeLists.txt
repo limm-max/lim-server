@@ -39,3 +39,9 @@ target_link_libraries(test_tcpserver PRIVATE lim_net pthread)
 
 add_executable(pingpong_client Pingpong_client.cc)
 target_link_libraries(pingpong_client PRIVATE pthread)
+
+add_executable(test_httpcontext test_httpcontext.cc)
+target_link_libraries(test_httpcontext lim_http lim_net lim_base pthread)
+
+add_executable(test_httpserver test_httpserver.cc)
+target_link_libraries(test_httpserver lim_http lim_net lim_base pthread)

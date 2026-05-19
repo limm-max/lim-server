@@ -43,7 +43,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)   #静态库
 # ----------- 添加子模块 -----------
 add_subdirectory(base)
 add_subdirectory(net)       
-# add_subdirectory(http)      # 后面再开
+add_subdirectory(http)      # 后面再开
 # add_subdirectory(examples)  # 后面再开
 add_subdirectory(tests)     # 后面再开
 
