@@ -29,11 +29,15 @@ add_compile_options(
 
 # ----------- 头文件搜索路径 -----------
 #PROJECT_SOURCE_DIR：CMake内置变量，项目根目录的绝对路径
+#自定义库头文件
 include_directories(
     ${PROJECT_SOURCE_DIR}/base/include
     ${PROJECT_SOURCE_DIR}/net/include
     ${PROJECT_SOURCE_DIR}/http/include
 )
+
+# 第三方库头文件位置
+include_directories(${CMAKE_SOURCE_DIR}/third_party)
 
 # ----------- 输出路径 -----------
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)   #可执行文件

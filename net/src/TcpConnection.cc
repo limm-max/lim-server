@@ -313,8 +313,13 @@ namespace
         {
             err = optval;
         }
-        LOG_ERROR << "TcpConnection::handleError [" << name_
-                << "] - SO_ERROR=" << err;
+        // LOG_ERROR << "TcpConnection::handleError [" << name_
+        //         << "] - SO_ERROR=" << err;
+        if (err == ECONNRESET || err == ETIMEDOUT) {
+            LOG_INFO << "TcpConnection::handleError [...] - peer reset, ignored";
+        } else {
+            LOG_ERROR << "TcpConnection::handleError [...] - SO_ERROR=" << err;
+        }
     }
 
 }//namespace lim

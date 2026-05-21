@@ -1,0 +1,38 @@
+// SessionStorage.h
+//存储Session的内存对象
+// 存储抽象:
+//   • SessionStorage 是基类,提供 save/load/remove 接口
+//   • MemorySessionStorage 是内存实现 (unordered_map)
+//   • 以后可以加 RedisSessionStorage 等
+
+#pragma once
+
+#include "Session.h"
+#include <memory>
+#include <unordered_map>
+
+namespace lim
+{
+
+class SessionStorage
+{
+public:
+    virtual ~SessionStorage() = default;
+
+    virtual void save(std::shared_ptr<Session> session) = 0;
+    virtual std::shared_ptr<Session> load(const std::string& sessionId) = 0;
+    virtual void remove(const std::string& sessionId) = 0;
+};
+
+class MemorySessionStorage : public SessionStorage
+{
+public:
+    void save(std::shared_ptr<Session> session) override;
+    std::shared_ptr<Session> load(const std::string& sessionId) override;
+    void remove(const std::string& sessionId) override;
+
+private:
+    std::unordered_map<std::string, std::shared_ptr<Session>> sessions_;
+};
+
+} // namespace lim

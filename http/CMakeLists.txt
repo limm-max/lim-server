@@ -7,6 +7,12 @@ set(HTTP_SOURCES
     src/HttpContext.cc
     src/HttpResponse.cc
     src/HttpServer.cc
+    src/Router.cc
+    src/MiddlewareChain.cc    
+    src/CoresMiddleware.cc
+    src/Session.cc             
+    src/SessionStorage.cc      
+    src/SessionManager.cc      
 )
 
 add_library(lim_http STATIC ${HTTP_SOURCES})

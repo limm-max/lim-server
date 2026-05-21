@@ -20,7 +20,7 @@
 #include "InetAddress.h"
 #include "HttpRequest.h"
 #include "HttpResponse.h"
-
+#include "Logger.h"
 #include <iostream>
 #include <string>
 
@@ -28,7 +28,7 @@ using namespace lim;
 
 void onRequest(const HttpRequest& req, HttpResponse* resp)
 {
-    std::cout << "[请求] " << req.methodString() << " " << req.path() << "\n";
+    // std::cout << "[请求] " << req.methodString() << " " << req.path() << "\n";
 
     if (req.path() == "/")
     {
@@ -70,12 +70,13 @@ void onRequest(const HttpRequest& req, HttpResponse* resp)
 
 int main()
 {
+    lim::Logger::setLogLevel(lim::Logger::WARN);   // ← 加这一行
     EventLoop loop;
     InetAddress addr(8888);
     HttpServer server(&loop, addr, "limHttpServer");
 
     server.setHttpCallback(onRequest);
-    server.setThreadNum(2);   // baseLoop + 2 个 subLoop
+    server.setThreadNum(4);   // baseLoop + 2 个 subLoop
 
     std::cout << "HttpServer running at http://127.0.0.1:8888/\n";
     std::cout << "Try:\n";

@@ -45,3 +45,18 @@ target_link_libraries(test_httpcontext lim_http lim_net lim_base pthread)
 
 add_executable(test_httpserver test_httpserver.cc)
 target_link_libraries(test_httpserver lim_http lim_net lim_base pthread)
+
+add_executable(test_router test_router.cc)
+target_link_libraries(test_router lim_http lim_net lim_base pthread)
+
+add_executable(test_middleware test_middleware.cc)
+target_link_libraries(test_middleware lim_http lim_net lim_base pthread)
+
+add_executable(test_static_server test_static_server.cc)
+target_link_libraries(test_static_server lim_http lim_net lim_base pthread)
+
+add_executable(test_session test_session.cc)
+target_link_libraries(test_session lim_http lim_net lim_base pthread)
+
+add_executable(test_json_session test_json_session.cc)
+target_link_libraries(test_json_session lim_http lim_net lim_base pthread)

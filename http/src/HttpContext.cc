@@ -102,11 +102,38 @@ bool HttpContext::parseRequest(Buffer* buf, Timestamp receiveTime)
                 }
                 else
                 {
-                    // 没找到 ':',说明这是空行(只有 \r\n),header 结束
-                    // 本 Day 不解析 body,直接进入 kGotAll
-                    // (后续可在这里检查 Content-Length,决定进 kExpectBody 还是 kGotAll)
-                    state_ = kGotAll;
-                    hasMore = false;
+                    // 空行,header 结束
+                    //判断是否有body需要解析
+                    if (request_.method() == HttpRequest::kPost ||
+                        request_.method() == HttpRequest::kPut)
+                    {
+                        std::string len = request_.getHeader("Content-Length");
+                        if (!len.empty())
+                        {
+                            request_.setContentLength(std::stoull(len));
+                            if (request_.contentLength() > 0)
+                            {
+                                state_ = kExpectBody;   // 还要读 body
+                            }
+                            else
+                            {
+                                state_ = kGotAll;
+                                hasMore = false;
+                            }
+                        }
+                        else
+                        {
+                            // POST/PUT 没 Content-Length → 当作没 body,直接完成
+                            state_ = kGotAll;
+                            hasMore = false;
+                        }
+                    }
+                    else
+                    {
+                        // GET/HEAD/DELETE 无 body,直接完成
+                        state_ = kGotAll;
+                        hasMore = false;
+                    }
                 }
                 buf->retrieveUntil(crlf + 2);
             }
@@ -117,7 +144,15 @@ bool HttpContext::parseRequest(Buffer* buf, Timestamp receiveTime)
         }
         else if (state_ == kExpectBody)
         {
-            // TODO: 留给后续 Day 处理(POST 请求 body)
+            
+            if (buf->readableBytes() < request_.contentLength()) {
+                hasMore = false;
+                return true;
+            }
+            std::string body(buf->peek(), buf->peek() + request_.contentLength());
+            request_.setBody(body);
+            buf->retrieve(request_.contentLength());
+            state_ = kGotAll;
             hasMore = false;
         }
     }

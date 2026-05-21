@@ -23,11 +23,12 @@ public:
     enum Method
     {
         kInvalid,
-        kGet,
-        kPost,
-        kHead,
-        kPut,
-        kDelete,
+        kGet,       //索取资源，无body
+        kPost,      //提交数据，用户注册、登录（提交密码）、上传文件、在聊天框里发送一条新消息等
+        kHead,      //获取大资源的时候常用，标明只回响应头，先不回资源本身的body
+        kPut,       //修改/更新数据
+        kDelete,    //删除数据
+        kOptions,   //预检请求。使用了 PUT、DELETE、PATCH 等方法，浏览器会先发一个options请求
     };
 
     //请求行协议版本

@@ -102,7 +102,36 @@ namespace lim
         response.setVersion(req.getVersion()==HttpRequest::kHttp11 ? "HTTP/1.1" : "HTTP/1.0");
 
         //根据业务逻辑去构造响应报文其他信息
-        httpCallback_(req,&response);
+        //加入中间组件的before和after
+        //先走路由，如果路由没命中则总全局，默认是404
+        try
+        {
+            // ─── 1. before 阶段 ───
+            HttpRequest mutableReq = req;             // 中间件可能要改 req
+            middlewareChain_.processBefore(mutableReq);
+
+            // ─── 2. 路由 / 兜底 ───
+            if (!router_.route(mutableReq, &response))
+            {
+                httpCallback_(mutableReq, &response);
+            }
+
+            // ─── 3. after 阶段 ───
+            middlewareChain_.processAfter(response);
+        }
+        catch (const HttpResponse& earlyResp)   //例如cores预检请求的before抛出了resp
+        {
+            // ⭐ 中间件 before 抛响应 (CORS 预检) → 直接用它
+            response = earlyResp;
+        }
+        catch (const std::exception& e)
+        {
+            // 业务抛异常 → 500 兜底
+            LOG_ERROR << "Handler exception: " << e.what();
+            response.setStatusCode(HttpResponse::k500InternalServerError);
+            response.setStatusMessage("Internal Server Error");
+            response.setBody(e.what());
+        }
 
         //序列化并发送
         Buffer buf;

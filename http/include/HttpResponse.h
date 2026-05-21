@@ -50,6 +50,8 @@ public:
             statusCode_=code;
             statusMessage_=msg;
         }
+    
+    HttpStatusCode statusCode() const{return statusCode_;}      //测试使用
 
     // ─── Keep-Alive 控制 ──────────────────
     void setCloseConnection(bool on)    {closeConnection_=on;}
